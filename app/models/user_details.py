@@ -9,7 +9,7 @@ class UserDetails(db.Model, AuditColumns):
 
     id = db.Column(PG_UUID(as_uuid=True), primary_key=True, default=uuid.uuid4)
     user_id = db.Column(ForeignKey('user_mst.id'), nullable=False)
-    adhaar_number = db.Column(db.String, nullable=False)
+    aadhaar_number = db.Column(db.String, nullable=False)
     college_name = db.Column(db.String(225), nullable=False)
     roll_number = db.Column(db.String(50), nullable=False)
     qualification = db.Column(db.String(255), nullable=True)
@@ -20,7 +20,7 @@ class UserDetails(db.Model, AuditColumns):
         return {
             'id': str(self.id),
             'user_id': str(self.user_id), 
-            'adhaar_number': self.adhaar_number,
+            'aadhaar_number': self.aadhaar_number,
             'college_name': self.college_name,
             'roll_number': self.roll_number,
             'qualification': self.qualification,

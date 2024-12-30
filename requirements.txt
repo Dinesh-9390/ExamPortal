@@ -6,3 +6,5 @@ Werkzeug
 python-dotenv
 psycopg2
 pandas
+faker
+pyjwt
