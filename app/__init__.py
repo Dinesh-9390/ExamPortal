@@ -21,8 +21,8 @@ def create_app():
     app.register_blueprint(user_bp, url_prefix='/api/users')
 
 
-    with (app.app_context()):
-     from app.models import user_mst, user_details, technology_mst, user_technology, exams, sections, sub_sections, exam_section, user_exam_map, questions_mst
+    with ((app.app_context())):
+     from app.models import user_mst,user_details, technology_mst, user_technology, exams, sections, sub_sections, exam_section, user_exam_map, questions_mst, role_mst, user_role_map
 
      """
      Inserting the test data into master tables
