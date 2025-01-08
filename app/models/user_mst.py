@@ -1,12 +1,12 @@
 import uuid
 from app import db
-from sqlalchemy.dialects.postgresql import UUID as PG_UUID
+from sqlalchemy.dialects.mssql import UNIQUEIDENTIFIER
 from app.models.audit_columns import AuditColumns
 
 class UserMst(db.Model, AuditColumns):
     __tablename__ = 'user_mst'
 
-    id = db.Column(PG_UUID(as_uuid=True), primary_key=True,  nullable=False, default=uuid.uuid4)
+    id = db.Column(UNIQUEIDENTIFIER, primary_key=True,  nullable=False, default=uuid.uuid4)
     first_name = db.Column(db.String(225), unique=False, nullable=False)
     last_name = db.Column(db.String(225), unique=False, nullable=False)
     email = db.Column(db.String(120), unique=True, nullable=False)

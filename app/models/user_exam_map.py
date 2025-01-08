@@ -1,19 +1,19 @@
 import uuid
 from app import db
-from sqlalchemy.dialects.postgresql import UUID
+from sqlalchemy.dialects.mssql import UNIQUEIDENTIFIER
 from app.models.audit_columns import AuditColumns
-from sqlalchemy import ForeignKey
+from sqlalchemy import ForeignKey,DATETIME
 
 
 class UserExamMap(db.Model, AuditColumns):
     __tablename__ = 'user_exam_map'
 
-    id = db.Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4)
+    id = db.Column(UNIQUEIDENTIFIER, primary_key=True, default=uuid.uuid4)
     user_id = db.Column(ForeignKey('user_mst.id'))
     exam_id = db.Column(ForeignKey('exams.id'))
     current_question_id = db.Column(ForeignKey('questions_mst.id'))
-    start_time = db.Column(db.TIMESTAMP, nullable=False)
-    end_time = db.Column(db.TIMESTAMP, nullable=False)
+    start_time = db.Column(DATETIME, nullable=False)
+    end_time = db.Column(DATETIME, nullable=False)
     status = db.Column(db.String, nullable=True)
 
     def to_dict(self):
