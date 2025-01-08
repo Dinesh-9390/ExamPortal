@@ -1,13 +1,13 @@
 import uuid
 from app import db
 from app.models.audit_columns import AuditColumns
-from sqlalchemy.dialects.postgresql import UUID as PG_UUID
+from sqlalchemy.dialects.mssql import UNIQUEIDENTIFIER
 from sqlalchemy import ForeignKey
 
 class UserTechnology(db.Model, AuditColumns):
     __tablename__ = 'user_technology'
 
-    id = db.Column((PG_UUID(as_uuid=True)),primary_key=True, nullable=False, default=uuid.uuid4)
+    id = db.Column((UNIQUEIDENTIFIER),primary_key=True, nullable=False, default=uuid.uuid4)
     user_id = db.Column(ForeignKey('user_mst.id'), nullable=False)
     technology_id = db.Column(ForeignKey('technology_mst.id'), nullable=False)
 

@@ -1,13 +1,13 @@
 import uuid
 from app import db
-from sqlalchemy.dialects.postgresql import UUID
+from sqlalchemy.dialects.mssql import UNIQUEIDENTIFIER
 from app.models.audit_columns import AuditColumns
 from sqlalchemy import ForeignKey
 
 class ExamSection(db.Model, AuditColumns):
     __tablename__ = 'exam_section'
 
-    id = db.Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4)
+    id = db.Column(UNIQUEIDENTIFIER, primary_key=True, default=uuid.uuid4)
     exam_id = db.Column(ForeignKey('exams.id'))
     section_id = db.Column(ForeignKey('sections.id'))
     sub_section_id = db.Column(ForeignKey('sub_sections.id'))

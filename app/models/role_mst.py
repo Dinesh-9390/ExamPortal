@@ -1,13 +1,13 @@
 import uuid
 from app import db
-from sqlalchemy.dialects.postgresql import UUID as PG_UUID
+from sqlalchemy.dialects.mssql import UNIQUEIDENTIFIER
 from app.models.audit_columns import AuditColumns
 
 class RoleMst(db.Model, AuditColumns):
     __tablename__ = 'role_mst'
 
-    id = db.Column(PG_UUID(as_uuid=True), primary_key=True,  nullable=False, default=uuid.uuid4)
-    role_type = db.Column(db.String(225), unique=False, nullable=False)
+    id = db.Column(UNIQUEIDENTIFIER, primary_key=True,  nullable=False, default=uuid.uuid4)
+    role_type = db.Column(db.String(225), unique=True, nullable=False)
 
     def to_dict(self):
         return {
